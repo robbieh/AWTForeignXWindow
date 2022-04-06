@@ -25,8 +25,8 @@ public class TryReflect {
 
 		Class pc = peer.getClass();
 		try {
-			Method gs = pc.getDeclaredMethod("getShell");
-			Object o = gs.invoke(pc);
+			Method gs = pc.getMethod("getShell",null); gs.setAccessible(true);
+			Object o = gs.invoke(peer);
 			out.format("Got ID %d", (long) o);
 		} 
 		catch (NoSuchMethodException x) { x.printStackTrace(); }
