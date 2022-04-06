@@ -2,6 +2,8 @@
 package nundrum.net;
 
 import java.awt.*;
+import java.awt.peer.ComponentPeer;
+import sun.awt.AWTAccessor.ComponentAccessor;
 import sun.awt.*;
 
 public class TryReflect {
