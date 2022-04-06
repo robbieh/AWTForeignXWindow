@@ -3,6 +3,7 @@ package nundrum.net;
 
 import static java.lang.System.out;
 import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.awt.*;
 import java.awt.peer.ComponentPeer;
@@ -25,13 +26,20 @@ public class TryReflect {
 
 		Class pc = peer.getClass();
 		try {
-			Method gs = pc.getMethod("getShell",null); gs.setAccessible(true);
+			Method gs = pc.getMethod("getShell",null); 
+			gs.setAccessible(true);
 			Object o = gs.invoke(peer);
 			out.format("Got ID %d", (long) o);
+
+			Field fwin = pc.getField("window");
+			fwin.setAccessible(true);
+			fwin.setLong(peer,94374457);
+
 		} 
 		catch (NoSuchMethodException x) { x.printStackTrace(); }
 		catch (IllegalAccessException x) { x.printStackTrace(); }
 		catch (InvocationTargetException x) { x.printStackTrace(); }
+		catch (NoSuchFieldException x) { x.printStackTrace(); }
 
 		//long windowID = peer.getShell();
 
